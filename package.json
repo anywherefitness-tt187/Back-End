@@ -20,10 +20,12 @@
   "homepage": "https://github.com/anywherefitness-tt187/Back-End#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "git": "^0.1.5",
     "git-init": "^1.0.0",
+    "helmet": "^4.2.0",
     "init": "^0.1.2",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.21.13",
