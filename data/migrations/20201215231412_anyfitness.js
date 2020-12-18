@@ -10,14 +10,46 @@ exports.up = function (knex) {
       tbl.string("password", 256).notNullable().unique().index();
 
       tbl
-        .integer("role")
+        .integer("role_id")
         .unsigned()
         .references("role.id")
         .onDelete("RESTRICT")
+        .onUpdate("CASCADE");
+    })
+    .createTable("class", (tbl) => {
+      tbl.increments();
+      tbl.string("class_name ", 128).notNullable().unique();
+      tbl.string("class_type", 128).notNullable();
+      tbl.string("class_intensity", 128).notNullable();
+      tbl.string("class_location", 128).notNullable();
+      tbl.string("start_time", 128).notNullable();
+      tbl.string("class_duration", 128).notNullable();
+      tbl.string("class_max_size", 128).notNullable();
+      tbl
+        .integer("user_id")
+        .references("users.id")
+        .notNullable()
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
+    })
+    .createTable("clients_registered", (tbl) => {
+      tbl.increments();
+      tbl.string("client_name", 128).notNullable();
+      tbl.string("class_name", 128).notNullable();
+      tbl.string("class_date", 128).notNullable();
+      tbl
+        .integer("class_id")
+        .references("class.id")
+        .notNullable()
+        .onDelete("CASCADE")
         .onUpdate("CASCADE");
     });
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTableifExists("roles").dropTableifExists("users");
+  return knex.schema
+    .dropTableifExists("roles")
+    .dropTableifExists("users")
+    .dropTableifExists("class")
+    .dropTableifExists("clients_registered");
 };
