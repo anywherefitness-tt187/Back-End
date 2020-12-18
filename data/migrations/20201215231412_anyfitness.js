@@ -2,19 +2,25 @@ exports.up = function (knex) {
   return knex.schema
     .createTable("role", (tbl) => {
       tbl.increments();
-      tbl.string("role", 128).notNullable().unique();
+      tbl.string("role", 128).notNullable();
+      tbl
+        .integer("users_id")
+        .unsigned()
+        .references("users.id")
+        .onDelete("CASCADE")
+        .onUpdate("CASCADE");
     })
     .createTable("users", (tbl) => {
       tbl.increments();
       tbl.string("username", 128).notNullable().unique().index();
       tbl.string("password", 256).notNullable().unique().index();
 
-      tbl
-        .integer("role_id")
-        .unsigned()
-        .references("role.id")
-        .onDelete("RESTRICT")
-        .onUpdate("CASCADE");
+      // tbl
+      //   .integer("role_id")
+      //   .unsigned()
+      //   .references("role.id")
+      //   .onDelete("RESTRICT")
+      //   .onUpdate("CASCADE");
     })
     .createTable("class", (tbl) => {
       tbl.increments();
@@ -48,8 +54,8 @@ exports.up = function (knex) {
 
 exports.down = function (knex) {
   return knex.schema
-    .dropTableifExists("roles")
-    .dropTableifExists("users")
-    .dropTableifExists("class")
-    .dropTableifExists("clients_registered");
+    .dropTableIfExists("roles")
+    .dropTableIfExists("users")
+    .dropTableIfExists("class")
+    .dropTableIfExists("clients_registered");
 };
