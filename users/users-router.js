@@ -18,6 +18,19 @@ router.get("/role", (req, res) => {
     .catch((err) => res.send(err));
 });
 
+//Instructor's classes
+router.get("/:id/class", (req, res) => {
+  classes
+    .findClass(req.params.id)
+    .then((userClass) => {
+      res.status(200).json(userClass);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
+});
+
 //add a role to user, instructor/client/admin
 router.post("/:id", (req, res) => {
   const role = { users_id: req.params.id, role: req.body.role };
@@ -44,19 +57,6 @@ router.post("/:id/class", (req, res) => {
     .addClass(newClass)
     .then((classes) => {
       res.status(200).json(classes);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.send(err);
-    });
-});
-
-router.get("/:id/class", (req, res) => {
-  const { id } = req.params.id;
-  classes
-    .findClass(id)
-    .then((userClass) => {
-      res.status(200).json(userClass);
     })
     .catch((err) => {
       console.log(err);

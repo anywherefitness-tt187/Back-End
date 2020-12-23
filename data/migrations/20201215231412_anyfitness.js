@@ -14,13 +14,6 @@ exports.up = function (knex) {
       tbl.increments();
       tbl.string("username", 128).notNullable().unique().index();
       tbl.string("password", 256).notNullable().unique().index();
-
-      // tbl
-      //   .integer("role_id")
-      //   .unsigned()
-      //   .references("role.id")
-      //   .onDelete("RESTRICT")
-      //   .onUpdate("CASCADE");
     })
     .createTable("class", (tbl) => {
       tbl.increments();
