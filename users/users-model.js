@@ -13,6 +13,7 @@ module.exports = {
 function find() {
   return db("users").select("id", "username").orderBy("id");
 }
+
 function findRole() {
   return db("role").select("id", "role", "users_id").orderBy("id");
 }
