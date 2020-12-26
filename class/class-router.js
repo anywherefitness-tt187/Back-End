@@ -11,6 +11,18 @@ router.get("/", (req, res) => {
     .catch((err) => res.send(err));
 });
 
+//find class by id
+router.get("/:id", (req, res) => {
+  classes
+    .findClassById(req.params.id)
+    .then((findClass) => {
+      res.status(200).json(findClass);
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 //update classes
 router.put("/:id", (req, res) => {
   const updatedClass = {
