@@ -24,6 +24,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
+//get list of student that joined the class
 router.get("/:id/clients", (req, res) => {
   registered
     .findClients(req.params.id)
@@ -31,6 +32,28 @@ router.get("/:id/clients", (req, res) => {
       res.status(200).json(clients);
     })
     .catch((err) => res.send(err));
+});
+
+//add client to class
+router.post("/:id/clients", (req, res) => {
+  const newStudent = {
+    class_id: req.params.id,
+    client_name: req.body.client_name,
+    class_name: req.body.class_name,
+    class_date: req.body.class_date,
+  };
+  registered.registerClient(newStudent).then((student) => {
+    res
+      .status(200)
+      .json({
+        message: `${req.body.client_name} has signed up for ${req.body.class_name}`,
+        student,
+      })
+      .catch((err) => {
+        console.log(err);
+        res.send(err);
+      });
+  });
 });
 
 //update classes
