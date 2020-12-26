@@ -10,8 +10,12 @@ module.exports = {
   findRoleById,
 };
 
-function find() {
-  return db("users").select("id", "username").orderBy("id");
+async function find() {
+  return await db("users").select("id", "username").orderBy("id");
+}
+
+function findById(id) {
+  return db("users").where({ id }).first().select("id", "username");
 }
 
 function findRole() {
@@ -33,8 +37,4 @@ async function findRoleById(id) {
 async function addRole(role) {
   const [id] = await db("role").insert(role, "id");
   return findRoleById(id);
-}
-
-function findById(id) {
-  return db("users").where({ id }).first();
 }

@@ -7,7 +7,10 @@ router.get("/", (req, res) => {
   users
     .find()
     .then((users) => res.status(200).json(users))
-    .catch((err) => res.send(err));
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
 });
 
 //get roles of users
@@ -15,6 +18,14 @@ router.get("/role", (req, res) => {
   users
     .findRole()
     .then((role) => res.status(200).json(role))
+    .catch((err) => res.send(err));
+});
+
+//get users byId
+router.get("/:id", (req, res) => {
+  users
+    .findById(req.params.id)
+    .then((user) => res.status(200).json(user))
     .catch((err) => res.send(err));
 });
 
@@ -41,6 +52,7 @@ router.post("/:id", (req, res) => {
       .catch((err) => res.send(err));
   });
 });
+
 //create a new class, instructor only
 router.post("/:id/class", (req, res) => {
   const newClass = {

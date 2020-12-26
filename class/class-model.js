@@ -5,7 +5,8 @@ module.exports = {
   findClass,
   findClassById,
   addClass,
-  findClassById,
+  updateClass,
+  remove,
 };
 
 function findAllClasses() {
@@ -17,27 +18,12 @@ async function addClass(newClass) {
   return findClassById(id);
 }
 
-// async function findClass(id) {
-//   const clases = await db("class")
-//     .join("users", "class.user_id", "=", "users.id")
-//     .select(
-//       "user_id",
-//       "username",
-//       "class_name",
-//       "class_type",
-//       "class_intensity",
-//       "class_location"
-//     );
-//   return clases;
-// }
-
 async function findClass(id) {
   try {
     const clases = await db("class as c")
       .join("users as u", "u.id", "c.user_id")
       .where({ "c.user_id": id })
       .select(
-        "c.user_id",
         "u.username",
         "c.class_name",
         "c.class_type",
@@ -53,6 +39,14 @@ async function findClass(id) {
   }
 }
 
+function updateClass(id, changes) {
+  return db("class").where({ id }).update(changes);
+}
+
 function findClassById(id) {
   return db("class").where({ id }).first();
+}
+
+function remove(id) {
+  return db("class").del().where({ id });
 }
