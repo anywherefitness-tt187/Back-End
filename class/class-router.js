@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const classes = require("./class-model");
+const registered = require("../registered/registered-model");
 
 //find classes
 router.get("/", (req, res) => {
@@ -21,6 +22,15 @@ router.get("/:id", (req, res) => {
     .catch((err) => {
       res.send(err);
     });
+});
+
+router.get("/:id/clients", (req, res) => {
+  registered
+    .findClients(req.params.id)
+    .then((clients) => {
+      res.status(200).json(clients);
+    })
+    .catch((err) => res.send(err));
 });
 
 //update classes

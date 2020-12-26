@@ -3,11 +3,20 @@ module.exports = {
   find,
   registerClient,
   findRegisteredClientById,
+  findClients,
   removeClient,
 };
 
 function find() {
   return db("clients_registered");
+}
+
+async function findClients(id) {
+  const client = await db("clients_registered as cr")
+    .join("class as c", "c.id", "cr.class_id")
+    .where({ "cr.class_id": id })
+    .select("c.class_name", "c.class_type", "cr.client_name", "cr.class_id");
+  return client;
 }
 
 async function registerClient(register) {
