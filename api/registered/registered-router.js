@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 
 //get client by id
 
-router.get("/"),
+router.get("/:id"),
   (req, res) => {
     registered
       .findRegisteredClientById()
