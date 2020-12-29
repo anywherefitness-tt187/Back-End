@@ -22,7 +22,7 @@ https://anywherefitness187.herokuapp.com/
 | Get a list of students registered to a class         | api/class/:id/clients     | GET    |
 | Get a list of all students registered to ALL classes | api/registered_client     | GET    |
 | Get a student registered to a class by id            | api/registered_client/:id | GET    |
-| Delete a student from a class                        | api/registered_client/:id | GET    |
+| Delete a student from a class                        | api/registered_client/:id | DELETE    |
 
 ## REGISTRATION DATA
 
