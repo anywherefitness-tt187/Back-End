@@ -8,6 +8,19 @@ router.get("/", (req, res) => {
   });
 });
 
+//get client by id
+
+router.get("/"),
+  (req, res) => {
+    registered
+      .findRegisteredClientById()
+      .then(res.status(200).json(clients))
+      .then((err) => {
+        res.send(err);
+      });
+  };
+
+//delete client from class
 router.delete("/:id", (req, res) => {
   registered
     .removeClient(req.params.id)
