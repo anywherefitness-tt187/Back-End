@@ -10,10 +10,8 @@ https://anywherefitness187.herokuapp.com/
 | Login a user                                         | api/auth/login            | POST   |
 | Get a list of users                                  | api/users                 | GET    |
 | Get a user by id                                     | api/users/:id             | GET    |
-| Add a role for a user                                | api/users/:id             | POST   |
 | Get an instructors classes                           | api/users/:id/class       | GET    |
 | Add a class for an instructor                        | api/users/:id/class       | POST   |
-| Get the role of a user                               | api/users/role            | GET    |
 | Find classes                                         | api/class                 | GET    |
 | Find a class by its id                               | api/class/:id             | GET    |
 | Update a class                                       | api/class/:id             | PUT    |

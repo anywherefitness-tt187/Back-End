@@ -11,15 +11,15 @@ module.exports = {
 };
 
 async function find() {
-  return await db("users").select("id", "username").orderBy("id");
+  return await db("users").select("id", "username", "role").orderBy("id");
 }
 
 function findById(id) {
-  return db("users").where({ id }).first().select("id", "username");
+  return db("users").where({ id }).first().select("id", "username", "role");
 }
 
 function findRole() {
-  return db("role").select("id", "role", "users_id").orderBy("id");
+  return db("role").select("id", "role").orderBy("id");
 }
 
 function findBy(filter) {

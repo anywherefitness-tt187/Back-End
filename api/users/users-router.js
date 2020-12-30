@@ -14,12 +14,12 @@ router.get("/", (req, res) => {
 });
 
 //get roles of users
-router.get("/role", (req, res) => {
-  users
-    .findRole()
-    .then((role) => res.status(200).json(role))
-    .catch((err) => res.send(err));
-});
+// router.get("/role", (req, res) => {
+//   users
+//     .findRole()
+//     .then((role) => res.status(200).json(role))
+//     .catch((err) => res.send(err));
+// });
 
 //get users byId
 router.get("/:id", (req, res) => {
@@ -43,15 +43,15 @@ router.get("/:id/class", (req, res) => {
 });
 
 //add a role to user, instructor/client/admin
-router.post("/:id", (req, res) => {
-  const role = { users_id: req.params.id, role: req.body.role };
-  users.addRole(role).then((role) => {
-    res
-      .status(200)
-      .json(role)
-      .catch((err) => res.send(err));
-  });
-});
+// router.post("/:id", (req, res) => {
+//   const role = { users_id: req.params.id, role: req.body.role };
+//   users.addRole(role).then((role) => {
+//     res
+//       .status(200)
+//       .json(role)
+//       .catch((err) => res.send(err));
+//   });
+// });
 
 //create a new class, instructor only
 router.post("/:id/class", (req, res) => {
