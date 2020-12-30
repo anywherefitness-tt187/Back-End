@@ -24,10 +24,13 @@ https://anywherefitness187.herokuapp.com/
 
 ## REGISTRATION DATA
 
+## role is either instructor or client
+
 | PROPERTY | TYPE   | EXAMPLE    | Notes    |
 | :------- | :----- | :--------- | :------- |
 | username | string | "username" | required |
 | password | string | "password" | required |
+| role | string | "client" | required | 
 
 ## LOGIN DATA
 
