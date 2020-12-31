@@ -24,6 +24,7 @@ async function findClass(id) {
       .join("users as u", "u.id", "c.user_id")
       .where({ "c.user_id": id })
       .select(
+        "c.id",
         "u.username",
         "c.class_name",
         "c.class_type",
