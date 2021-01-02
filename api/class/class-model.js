@@ -31,7 +31,8 @@ async function findClass(id) {
         "c.class_intensity",
         "c.class_location",
         "c.start_time",
-        "c.class_duration"
+        "c.class_duration",
+        "c.class_max_size"
       );
 
     return clases;

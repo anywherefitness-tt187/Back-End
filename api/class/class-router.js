@@ -59,6 +59,7 @@ router.post("/:id/clients", (req, res) => {
 //update classes
 router.put("/:id", (req, res) => {
   const updatedClass = {
+    username: req.body.username,
     class_name: req.body.class_name,
     type: req.body.class_type,
     intensity: req.body.class_intensity,
