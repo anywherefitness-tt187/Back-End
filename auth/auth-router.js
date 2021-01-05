@@ -33,13 +33,11 @@ router.post("/login", async (req, res) => {
 
     if (user && bcryptjs.compareSync(password, user.password)) {
       const token = generateToken({ username, password });
-      res
-        .status(200)
-        .json({
-          id: `${user.id}`,
-          message: `Welcome ${user.username},`,
-          token: token,
-        });
+      res.status(201).json({
+        id: `${user.id}`,
+        message: `Welcome ${user.username},`,
+        token: token,
+      });
     }
   } catch (err) {
     console.log(err);

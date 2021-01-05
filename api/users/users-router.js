@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const users = require("./users-model");
 const classes = require("../class/class-model");
+const { validateUserId } = require("../../middleware/users-middleware");
+const { validateClass } = require("../../middleware/class-middleware");
 
 //get users
 router.get("/", (req, res) => {
@@ -22,7 +24,7 @@ router.get("/", (req, res) => {
 // });
 
 //get users byId
-router.get("/:id", (req, res) => {
+router.get("/:id", validateUserId, (req, res) => {
   users
     .findById(req.params.id)
     .then((user) => res.status(200).json(user))
@@ -30,7 +32,7 @@ router.get("/:id", (req, res) => {
 });
 
 //Instructor's classes
-router.get("/:id/class", (req, res) => {
+router.get("/:id/class", validateUserId, (req, res) => {
   classes
     .findClass(req.params.id)
     .then((userClass) => {
@@ -54,7 +56,7 @@ router.get("/:id/class", (req, res) => {
 // });
 
 //create a new class, instructor only
-router.post("/:id/class", (req, res) => {
+router.post("/:id/class", validateClass, validateUserId, (req, res) => {
   const newClass = {
     user_id: req.params.id,
     class_name: req.body.class_name,
@@ -68,11 +70,14 @@ router.post("/:id/class", (req, res) => {
   classes
     .addClass(newClass)
     .then((classes) => {
-      res.status(200).json(classes);
+      res.status(201).json(classes);
     })
     .catch((err) => {
       console.log(err);
-      res.send(err);
+      res.status(400).json({
+        message:
+          "This class already exists please choose a different class name",
+      });
     });
 });
 

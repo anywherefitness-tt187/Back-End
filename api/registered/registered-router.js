@@ -14,7 +14,7 @@ router.get("/:id"),
   (req, res) => {
     registered
       .findRegisteredClientById()
-      .then(res.status(200).json(clients))
+      .then(res.status(201).json(clients))
       .then((err) => {
         res.send(err);
       });
@@ -25,7 +25,7 @@ router.delete("/:id", (req, res) => {
   registered
     .removeClient(req.params.id)
     .then(() => {
-      res.send("Client removed from class");
+      res.status(200).json("Client removed from class");
     })
     .catch((err) => {
       res.send(err);

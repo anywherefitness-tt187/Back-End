@@ -2,7 +2,7 @@ exports.up = function (knex) {
   return knex.schema
     .createTable("role", (tbl) => {
       tbl.increments();
-      tbl.string("role", 128).notNullable().unique();``
+      tbl.string("role", 128).notNullable().unique();
     })
     .createTable("users", (tbl) => {
       tbl.increments();
@@ -16,7 +16,7 @@ exports.up = function (knex) {
     })
     .createTable("class", (tbl) => {
       tbl.increments();
-      tbl.string("class_name ", 128).notNullable().unique();
+      tbl.string("class_name", 128).notNullable().unique();
       tbl.string("class_type", 128).notNullable();
       tbl.string("class_intensity", 128).notNullable();
       tbl.string("class_location", 128).notNullable();
