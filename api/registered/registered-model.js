@@ -15,7 +15,13 @@ async function findClients(id) {
   const client = await db("clients_registered as cr")
     .join("class as c", "c.id", "cr.class_id")
     .where({ "cr.class_id": id })
-    .select("c.class_name", "c.class_type", "cr.client_name", "cr.class_id");
+    .select(
+      "cr.class_id",
+      "c.class_name",
+      "c.class_type",
+      "cr.client_name",
+      "cr.id"
+    );
   return client;
 }
 

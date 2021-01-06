@@ -53,8 +53,6 @@ https://anywherefitness187.herokuapp.com/
 
 ## Register to a class
 
-| PROPERTY    | TYPE   | EXAMPLE                | Notes    |
-| :---------- | :----- | :--------------------- | :------- |
-| client_name | string | "Larry the Lobster"    | required |
-| class_name  | string | "Fitness Galore "      | required |
-| class_date  | string | "Jan 1, 2020 2:30 PM " | required |
+| PROPERTY    | TYPE   | EXAMPLE             | Notes    |
+| :---------- | :----- | :------------------ | :------- |
+| client_name | string | "Larry the Lobster" | required |
