@@ -38,6 +38,10 @@ router.post("/login", async (req, res) => {
         message: `Welcome ${user.username},`,
         token: token,
       });
+    } else {
+      res
+        .status(400)
+        .json({ message: "username or password does not match up" });
     }
   } catch (err) {
     console.log(err);
@@ -49,7 +53,6 @@ const generateToken = (user) => {
   const payload = {
     subject: user.id,
     username: user.username,
-    role: user.role,
   };
   const options = {
     expiresIn: "1d",

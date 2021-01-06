@@ -3,6 +3,7 @@ const users = require("./users-model");
 const classes = require("../class/class-model");
 const { validateUserId } = require("../../middleware/users-middleware");
 const { validateClass } = require("../../middleware/class-middleware");
+const restricted = require("../../middleware/restricted-middleware");
 
 //get users
 router.get("/", (req, res) => {
@@ -14,14 +15,6 @@ router.get("/", (req, res) => {
       res.send(err);
     });
 });
-
-//get roles of users
-// router.get("/role", (req, res) => {
-//   users
-//     .findRole()
-//     .then((role) => res.status(200).json(role))
-//     .catch((err) => res.send(err));
-// });
 
 //get users byId
 router.get("/:id", validateUserId, (req, res) => {
@@ -43,17 +36,6 @@ router.get("/:id/class", validateUserId, (req, res) => {
       res.send(err);
     });
 });
-
-//add a role to user, instructor/client/admin
-// router.post("/:id", (req, res) => {
-//   const role = { users_id: req.params.id, role: req.body.role };
-//   users.addRole(role).then((role) => {
-//     res
-//       .status(200)
-//       .json(role)
-//       .catch((err) => res.send(err));
-//   });
-// });
 
 //create a new class, instructor only
 router.post("/:id/class", validateClass, validateUserId, (req, res) => {

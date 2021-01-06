@@ -53,14 +53,12 @@ router.post("/:id/clients", validateClassId, (req, res) => {
   const newStudent = {
     class_id: req.params.id,
     client_name: req.body.client_name,
-    class_name: req.body.class_name,
-    class_date: req.body.class_date,
   };
   registered.registerClient(newStudent).then((student) => {
     res
       .status(201)
       .json({
-        message: `${req.body.client_name} has signed up for ${req.body.class_name}`,
+        message: `${req.body.client_name} has signed up for the class`,
         student,
       })
       .catch((err) => {

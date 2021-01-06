@@ -7,11 +7,11 @@ exports.up = function (knex) {
     .createTable("users", (tbl) => {
       tbl.increments();
       tbl.string("username", 128).notNullable().unique().index();
-      tbl.string("password", 256).notNullable().unique().index();
+      tbl.string("password", 256).notNullable().index();
       tbl
         .string("role")
         .references("role.role")
-        .onDelete("RESTRICT")
+        .onDelete("CASCADE")
         .onUpdate("CASCADE");
     })
     .createTable("class", (tbl) => {
@@ -33,8 +33,6 @@ exports.up = function (knex) {
     .createTable("clients_registered", (tbl) => {
       tbl.increments();
       tbl.string("client_name", 128).notNullable();
-      tbl.string("class_name", 128).notNullable();
-      tbl.string("class_date", 128).notNullable();
       tbl
         .integer("class_id")
         .references("class.id")
