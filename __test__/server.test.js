@@ -32,33 +32,13 @@ describe("GET /api/users without a token", () => {
   });
 });
 
-// describe("Test registration", () => {
-//   test("Status 201", () => {
-//     return request(server)
-//       .post("/api/auth/register")
-//       .send({ username: "MrKrabs", password: "moneymoney", role: "client" })
-//       .then((res) => {
-//         expect(res.status).toBe(201);
-//       });
-//   });
-// });
-// const username = "Krabo";
-// const password = "password";
-// const role = "client";
-
-// const userObj = {
-//   username: username,
-//   password: password,
-//   role: role,
-// };
-
-// describe("Test Registration", () => {
-//   test("Status 201", () => {
-//     return request(server)
-//       .post("/api/auth/register")
-//       .send(userObj)
-//       .then((res) => {
-//         expect(res.status).toBe(201);
-//       });
-//   });
-// });
+describe("Test registration", () => {
+  test("Status 201", () => {
+    return request(server)
+      .post("/api/auth/register")
+      .send({ username: "MrKrabs", password: "moneymoney", role: "client" })
+      .then((res) => {
+        expect(res.status).toBe(201);
+      });
+  });
+});
