@@ -16,6 +16,6 @@ module.exports = (req, res, next) => {
       }
     });
   } else {
-    res.status(401).json({ message: "Unauthorize access, please sign in" });
+    res.status(401).json({ message: "Unauthorized access, please sign in" });
   }
 };
