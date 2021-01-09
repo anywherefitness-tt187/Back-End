@@ -54,18 +54,18 @@ router.post("/:id/clients", validateClassId, (req, res) => {
     class_id: req.params.id,
     client_name: req.body.client_name,
   };
-  registered.registerClient(newStudent).then((student) => {
-    res
-      .status(201)
-      .json({
+  registered
+    .registerClient(newStudent)
+    .then((student) => {
+      res.status(201).json({
         message: `${req.body.client_name} has signed up for the class`,
         student,
-      })
-      .catch((err) => {
-        console.log(err);
-        res.send(err);
       });
-  });
+    })
+    .catch((err) => {
+      console.log(err);
+      res.send(err);
+    });
 });
 
 //update classes
